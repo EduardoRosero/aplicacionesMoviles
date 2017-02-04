@@ -12,7 +12,10 @@ var app={
   
   iniciaBotones: function(){
 	  var buttonAction = document.querySelector('#button-action');
-	  buttonAction.addEventListener('click', this.tomarFoto);//Añadimos un escuchador de evento para tomar la foto en un click o tap
+	  //Añadimos un escuchador de evento para tomar la foto en un click o tap
+	  buttonAction.addEventListener('click', function(){
+		  app.cargarFoto(Camera.PictureSourceType.CAMERA);
+	  });
 	  var filterButtons = document.querySelectorAll('.button-filter'); //con  selectAll creamos un array de los objetos que se crea en el orden en que estan en la pantalla
 	  filterButtons[0].addEventListener('click', function(){
 		  app.aplicaFiltro('gray');
@@ -23,6 +26,11 @@ var app={
 	  filterButtons[2].addEventListener('click', function(){
 		  app.aplicaFiltro('sepia');
 	  });	  	  
+	  
+	  var buttonGallery = document.querySelector('#button-gallery');
+	  buttonGallery.addEventListener('click', function(){
+		  app.cargarFoto(Camera.PictureSourceType.PHOTOLIBRARY);
+	  });
   },
   
   tomarFoto: function(){
@@ -36,7 +44,19 @@ var app={
 	  navigator.camera.getPicture(app.fotoTomada, app.errorAlTomarFoto, opciones );
   },
   
-  fotoTomada: function(imageURI){
+  cargarFoto: function(pictureSourceType){
+	  var opciones ={
+		  quality: 50,
+		  sourceType: pictureSourceType,
+		  destinationType: Camera.DestinationType.FILE_URI,
+		  targetWidth:300,
+		  targetHeight:300,
+		  correctOrientation: true
+	  };
+  	  navigator.camera.getPicture(app.fotoCargada, app.errorAlTomarFoto, opciones );
+  },
+  
+  fotoCargada: function(imageURI){
 	  var img = document.createElement('img');
 		img.onload = function(){
 			app.pintarFoto(img);
@@ -56,12 +76,12 @@ var app={
 	  console.log("Falló al tomar la foto o foto cancelada: " +  message);
   },
   
-  aplicaFiltro: function(filterName){
-	  var canvas = document.querySelector('#foto');
-	  var context = canvas.getContext('2d');
-	  imageData = context.getImageData(0,0, canvas.width, canvas.height);
-	  effects[filterName](imageData.data);
-	  context.putImageData(imageData,0,0);
+  aplicaFiltro: function(filterName) {
+    var canvas = document.querySelector('#foto');
+    var context = canvas.getContext('2d');
+    imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    effects[filterName](imageData.data);
+    context.putImageData(imageData, 0, 0);
   }
   
 };

@@ -2,7 +2,7 @@ var app={
   inicio: function(){
   
     this.iniciaFastClick();
-	this.iniciaBoton();
+	this.iniciaBotones();
 	
   },
 
@@ -10,9 +10,19 @@ var app={
     FastClick.attach(document.body);
   },
   
-  iniciaBoton: function(){
+  iniciaBotones: function(){
 	  var buttonAction = document.querySelector('#button-action');
 	  buttonAction.addEventListener('click', this.tomarFoto);//Añadimos un escuchador de evento para tomar la foto en un click o tap
+	  var filterButtons = document.querySelectorAll('.button-filter'); //con  selectAll creamos un array de los objetos que se crea en el orden en que estan en la pantalla
+	  filterButtons[0].addEventListener('click', function(){
+		  app.aplicaFiltro('gray');
+	  });
+	  filterButtons[1].addEventListener('click', function(){
+		  app.aplicaFiltro('negative');
+	  });
+	  filterButtons[2].addEventListener('click', function(){
+		  app.aplicaFiltro('sepia');
+	  });	  	  
   },
   
   tomarFoto: function(){
@@ -27,26 +37,37 @@ var app={
   },
   
   fotoTomada: function(imageURI){
-	  var image = document.createElement('img');
+	  var img = document.createElement('img');
 		img.onload = function(){
 			app.pintarFoto(img);
 		}
-			  image.src=imageURI;
+			  img.src=imageURI;
   },
   
   pintarFoto: function(img){
-	var canvas = document.querySelector('#foto'  );
+	var canvas = document.querySelector('#foto');
 	var context = canvas.getContext('2d');
 	canvas.width=img.width;
 	canvas.height=img.height;
-	context.drawImage(img, 0,0,img.width, img.hight);
+	context.drawImage(img, 0,0,img.width, img.height);
   },
   
   errorAlTomarFoto: function(message){
 	  console.log("Falló al tomar la foto o foto cancelada: " +  message);
+  },
+  
+  aplicaFiltro: function(filterName){
+	  var canvas = document.querySelector('#foto');
+	  var context = canvas.getContext('2d');
+	  imageData = context.getImageData(0,0, canvas.width, canvas.height);
+	  effects[filterName](imageData.data);
+	  context.putImageData(imageData,0,0);
   }
   
 };
+
+var imageData;
+
 
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {

@@ -27,8 +27,19 @@ var app={
   },
   
   fotoTomada: function(imageURI){
-	  var image = document.querySelector('#foto');
-	  image.src=imageURI;
+	  var image = document.createElement('img');
+		img.onload = function(){
+			app.pintarFoto(img);
+		}
+			  image.src=imageURI;
+  },
+  
+  pintarFoto: function(img){
+	var canvas = document.querySelector('#foto'  );
+	var context = canvas.getContext('2d');
+	canvas.width=img.width;
+	canvas.height=img.height;
+	context.drawImage(img, 0,0,img.width, img.hight);
   },
   
   errorAlTomarFoto: function(message){

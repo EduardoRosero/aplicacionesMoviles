@@ -2,6 +2,8 @@ var app={
   inicio: function(){
   
     this.iniciaFastClick();
+	this.iniciaBoton();
+	
   },
 
   iniciaFastClick: function () {

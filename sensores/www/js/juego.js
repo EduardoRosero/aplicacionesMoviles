@@ -1,16 +1,3 @@
-Skip to content
-Personal Open source Business Explore
-Sign upSign inPricingBlogSupport
-This repository
-Search
- Watch 9  Star 3  Fork 10 devscola/MOOC-game
- Code  Issues 0  Pull requests 1  Projects 0  Pulse  Graphs
-Branch: master Find file Copy pathMOOC-game/www/js/juego.js
-ef0aaeb  21 days ago
-@jcesarmobile jcesarmobile Arregla el juego para iOS
-2 contributors @xaviuzz @jcesarmobile
-RawBlameHistory     
-119 lines (90 sloc)  3.02 KB
 var app={
   inicio: function(){
     DIAMETRO_BOLA = 50;
@@ -130,5 +117,3 @@ if ('addEventListener' in document) {
         app.inicio();
     }, false);
 }
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help

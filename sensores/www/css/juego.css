@@ -1,18 +1,39 @@
+Skip to content
+Personal Open source Business Explore
+Sign upSign inPricingBlogSupport
+This repository
+Search
+ Watch 9  Star 3  Fork 10 devscola/MOOC-game
+ Code  Issues 0  Pull requests 1  Projects 0  Pulse  Graphs
+Branch: master Find file Copy pathMOOC-game/www/css/juego.css
+763c555  on 28 Oct 2016
+@xaviuzz xaviuzz Juego preparado
+1 contributor
+RawBlameHistory     
+24 lines (22 sloc)  373 Bytes
 body{
-	background-color:#fdcf58;
+  margin: 0px;
+  padding: 0px;
+  background-color: #fdcf58;
 }
 
-div.lecura{
-	display:block;
-	background-color:#f27d0c;
-	color:#800909;
-	border:none;
-	width:50%;
-	padding:30px;
-	font-size:3em;
-	margin-top:10px;
-	margin-left:auto;
-	margin-right:auto;
-	text-align:center;
-	text-transform:uppercase;
+body.agitado{
+  background-color: #800909;
 }
+
+div.lectura{
+  display: block;
+  background-color: #f27d0c;
+  color: #800909;
+  border: none;
+  width: 50%;
+  padding: 30px;
+  font-size: 3em;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
